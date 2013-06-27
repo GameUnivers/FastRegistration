@@ -1,5 +1,5 @@
 ﻿<?php
-include "class_mysqli.php";
+require_once("class_mysqli.php");
 
 class Register
 {
