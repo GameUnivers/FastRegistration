@@ -1,4 +1,5 @@
 ﻿<?php
+
 class Database
 {
     private $mysqli;
@@ -12,7 +13,7 @@ class Database
     {
        $this->mysqli = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_database);
        if($this->mysqli->connect_error){
-         printf("Nastala chyba pripojenia s hláškou: %s a správou: %s", $this->mysqli->connect_errno,$this->mysqli->connect_error);
+         printf("Nastala chyba pripojenia s hláškou: %s", $this->mysqli->connect_errno,$this->mysqli->connect_error);
          die();
 
        }

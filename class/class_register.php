@@ -1,5 +1,5 @@
 ﻿<?php
-require_once("class_mysqli.php");
+include "class_mysqli.php";
 
 class Register
 {
@@ -43,6 +43,12 @@ class Register
       return preg_replace('/[^a-zA-Z0-9@.]/','',$var);
     }
 
+    public function user_exists()
+    {
+        $result = $this->link->query("SELECT ID FROM users WHERE username='$this->username'");
+        return($result->num_rows > 0) ? 1 : 0;
+
+    }
     public function register()
     {
        $result = $this->link->query("INSERT INTO users (username,password) VALUES ('$this->username', '$this->passmd5')");
@@ -60,6 +66,8 @@ class Register
 
     public function valid_data()
     {
+        if($this->user_exists())
+            $this->errors[] = 'Uživateľské meno je obsadené';
         if(empty($this->username))
             $this->errors[] = 'Nesprávne uživateľské meno';
         if(empty($this->password))

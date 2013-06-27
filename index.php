@@ -1,6 +1,6 @@
 ﻿<?php session_start();
      if(isset($_POST['register'])){
-       require_once("class/class_register.php");
+       include "class_register.php";
 
        $db = new Database();
        $register = new Register($db);
